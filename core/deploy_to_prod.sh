@@ -11,8 +11,9 @@ set -Eeuo pipefail
 # VARIÁVEIS DE CONFIGURAÇÃO
 # ============================
 USER=$1
+FOLDER=$2
 
-cd /home/$USER/onovaes.com.br
+cd /home/$USER/$FOLDER || exit 1
 
 php artisan migrate --force
 php artisan dothnews:sync-permissions
