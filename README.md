@@ -1,6 +1,6 @@
-# dndeploi
+# Dn Deploi - Deploy Scripts for Ploi.io
 
-A simples scripts de deploy para aplicações PHP/Laravel hospedadas no Ploi.io
+Scripts de deploy para aplicações PHP/Laravel hospedadas no Ploi.io
 
 ## Exemplo de uso do script de deploy para staging
 
