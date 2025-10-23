@@ -3,13 +3,10 @@ set -Eeuo pipefail
 
 
 # ---------------------------------------------
-# Deploy padronizado para produção (Ploi)
+# This script will be run after staging to production deployment has been run
 # ---------------------------------------------
 
-
-# ============================
-# VARIÁVEIS DE CONFIGURAÇÃO
-# ============================
+# Variables
 USER=$1
 FOLDER=$2
 
