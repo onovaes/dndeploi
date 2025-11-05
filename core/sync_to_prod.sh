@@ -8,9 +8,9 @@ set -Eeuo pipefail
 
 # Variables
 USER=$1
-FOLDER=$2
+DOMAIN=$2
 
-cd /home/$USER/$FOLDER || exit 1
+cd /home/$USER/$DOMAIN || exit 1
 
 php artisan storage:link --force
 php artisan migrate --force
