@@ -41,7 +41,8 @@ npm config set prefix ~/.npm-global
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 rm -rf node_modules
-npm install
+# instala dependências exatas do package-lock.json
+npm ci
 
 # ============================
 # BUILD DE PRODUÇÃO
