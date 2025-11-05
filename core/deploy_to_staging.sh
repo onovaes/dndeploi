@@ -20,6 +20,15 @@ cd /home/$USER/$DOMAIN
 git pull origin main
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
+# ============================
+# MIGRAÇÕES E OTIMIZAÇÕES
+# ============================
+php artisan migrate --force
+php artisan dothnews:sync-permissions
+php artisan optimize:clear
+php artisan optimize # talvez isso de pau nas rotas
+php artisan about
+
 # Gera arquivo com informações do último commit
 git log -1 --pretty="Autor: %an%nData: %ad%nMensagem:%n%B" > public/dnversion.txt
 
