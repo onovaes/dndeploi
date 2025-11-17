@@ -25,7 +25,7 @@ composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 # ============================
 php artisan migrate --force
 php artisan dothnews:sync-permissions
-php artisan optimize:clear
+php artisan clear-compiled
 php artisan optimize # talvez isso de pau nas rotas
 php artisan about
 
