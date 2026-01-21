@@ -3,6 +3,7 @@ set -Eeuo pipefail
 
 # Diferencas em relacao ao v1
 # - Aceita trocar de branch, recebendo no parametro 4 o nome da branch atual
+# - Suporte a php artisan horizon:terminate no final do deploy
 
 # ---------------------------------------------
 # This script will be run after deploy in prod (Without staging) has been run
@@ -75,4 +76,5 @@ find . -path './.git' -prune -o -path './node_modules' -prune -o -type f -exec c
 # RELOAD PHP E FINALIZAÇÃO
 # ============================
 echo "" | sudo -S service php8.4-fpm reload
+php artisan horizon:terminate
 echo "🚀 Application deployed!"
