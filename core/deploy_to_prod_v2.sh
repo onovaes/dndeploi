@@ -74,5 +74,6 @@ find . -path './.git' -prune -o -path './node_modules' -prune -o -type f -exec c
 # RELOAD PHP E FINALIZAÇÃO
 # ============================
 echo "" | sudo -S service php8.4-fpm reload
+cd /home/$USER/$DOMAIN
 php artisan horizon:terminate
 echo "🚀 Application deployed!"
