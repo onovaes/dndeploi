@@ -20,9 +20,7 @@ CURRENT_BRANCH=$4
 # ============================
 # INSTALAÇÃO DO TEMA
 # ============================
-rm -rf /home/$USER/$DOMAIN/resources/$THEME_DIR
-mkdir -p /home/$USER/$DOMAIN/resources
-cp -R /home/themes/$THEME_DIR/. /home/$USER/$DOMAIN/resources/$THEME_DIR/
+rsync -a --delete /home/themes/$THEME_DIR/ /home/$USER/$DOMAIN/resources/$THEME_DIR/
 
 
 # ============================
