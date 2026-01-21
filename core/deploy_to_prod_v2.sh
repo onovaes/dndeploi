@@ -43,7 +43,7 @@ php artisan optimize # talvez isso de pau nas rotas
 php artisan about
 
 # Gera arquivo com informações do último commit
-git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad%nMensagem:%n%B" > public/dnversion.txt
+git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad%nMensagem:%n%B" > public/version.txt
 
 
 # ============================
