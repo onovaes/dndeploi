@@ -78,6 +78,6 @@ find . -path './.git' -prune -o -path './node_modules' -prune -o -type f -exec c
 # ============================
 echo "" | sudo -S service php8.4-fpm reload
 cd /home/$USER/$DOMAIN
-echo "Horizon terminating..."
+echo "ℹ️ Horizon terminating..."
 php artisan horizon:terminate
 echo "🚀 Application deployed!"
