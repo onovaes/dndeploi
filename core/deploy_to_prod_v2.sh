@@ -20,6 +20,7 @@ CURRENT_BRANCH=$4
 # ============================
 # INSTALAÇÃO DO TEMA
 # ============================
+echo "Rsyncing theme files from /home/themes/$THEME_DIR/ to /home/$USER/$DOMAIN/resources/$THEME_DIR/ ..."
 rsync -a --delete /home/themes/$THEME_DIR/ /home/$USER/$DOMAIN/resources/$THEME_DIR/
 
 
@@ -27,8 +28,9 @@ rsync -a --delete /home/themes/$THEME_DIR/ /home/$USER/$DOMAIN/resources/$THEME_
 # DEPLOY DA APLICAÇÃO
 # ============================
 cd /home/$USER/$DOMAIN
-
 git pull origin $CURRENT_BRANCH
+echo "🍀 Checked out branch: $CURRENT_BRANCH"
+echo "ℹ️ Installing composer dependencies..."
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 
@@ -62,7 +64,7 @@ npm ci
 # ============================
 # BUILD DE PRODUÇÃO
 # ============================
-echo "Building theme for production..."
+echo "ℹ️ Building theme for production..."
 make build-prod
 
 # ============================
