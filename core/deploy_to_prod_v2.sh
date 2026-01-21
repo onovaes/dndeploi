@@ -64,6 +64,7 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 
 rm -rf node_modules
 # instala dependências exatas do package-lock.json
+echo "ℹ️ Installing npm dependencies from theme..."
 npm ci
 
 # ============================
