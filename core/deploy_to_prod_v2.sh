@@ -4,6 +4,7 @@ set -Eeuo pipefail
 # Diferencas em relacao ao v1
 # - Aceita trocar de branch, recebendo no parametro 4 o nome da branch atual
 # - Suporte a php artisan horizon:terminate no final do deploy
+# - Uma série de melhorias de infos com ℹ️ e 🚀 para melhor visualização do progresso do deploy
 
 # ---------------------------------------------
 # This script will be run after deploy in prod (Without staging) has been run
@@ -20,16 +21,16 @@ CURRENT_BRANCH=$4
 # ============================
 # INSTALAÇÃO DO TEMA
 # ============================
-echo "Rsyncing theme files from /home/themes/$THEME_DIR/ to /home/$USER/$DOMAIN/resources/$THEME_DIR/ ..."
+echo "ℹ️ Rsyncing theme files from /home/themes/$THEME_DIR/ to /home/$USER/$DOMAIN/resources/$THEME_DIR/ ..."
 rsync -a --delete /home/themes/$THEME_DIR/ /home/$USER/$DOMAIN/resources/$THEME_DIR/
 
 
 # ============================
 # DEPLOY DA APLICAÇÃO
 # ============================
+echo "🍀 Checked out branch: $CURRENT_BRANCH"
 cd /home/$USER/$DOMAIN
 git pull origin $CURRENT_BRANCH
-echo "🍀 Checked out branch: $CURRENT_BRANCH"
 echo "ℹ️ Installing composer dependencies..."
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
@@ -37,13 +38,17 @@ composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 # ============================
 # MIGRAÇÕES E OTIMIZAÇÕES
 # ============================
+echo "ℹ️ Running database migrations and optimizations..."
 php artisan migrate --force
 php artisan dothnews:sync-permissions
 php artisan clear-compiled
 php artisan optimize # talvez isso de pau nas rotas
+
+echo "ℹ️ Generating application version info..."
 php artisan about
 
 # Gera arquivo com informações do último commit
+echo "ℹ️ Writing version info to public/version.txt..."
 git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad%nMensagem:%n%B" > public/version.txt
 
 
