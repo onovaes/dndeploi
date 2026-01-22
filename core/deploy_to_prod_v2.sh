@@ -40,8 +40,14 @@ composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 # ============================
 echo "ℹ️ Running database migrations and optimizations..."
 php artisan migrate --force
+
+echo "ℹ️ Syncing permissions..."
 php artisan dothnews:sync-permissions
+
+echo "ℹ️ Caching configuration with artisan clear-compiled..."
 php artisan clear-compiled
+
+echo "ℹ️ Optimizing application with artisan optimize..."
 php artisan optimize # talvez isso de pau nas rotas
 
 echo "ℹ️ Generating application version info..."
@@ -55,6 +61,7 @@ git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad%nMensagem:%n
 # ============================
 # CONFIGURAÇÃO DO NPM (USER-ONLY) e INSTALAÇÃO DE DEPENDÊNCIAS
 # ============================
+echo "ℹ️ Setting up npm for user $USER and installing theme dependencies..."
 cd /home/$USER/$DOMAIN/resources/$THEME_DIR/
 
 npm config set cache ~/.npm
@@ -63,8 +70,7 @@ npm config set prefix ~/.npm-global
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 rm -rf node_modules
-# instala dependências exatas do package-lock.json
-echo "ℹ️ Installing npm dependencies from theme..."
+echo "ℹ️ Installing npm dependencies from package-lock.json..."
 npm ci
 
 # ============================
@@ -76,6 +82,7 @@ make build-prod
 # ============================
 # PERMISSÕES
 # ============================
+echo "ℹ️ Setting file and directory permissions..."
 find . -path './.git' -prune -o -path './node_modules' -prune -o -type d -exec chmod 755 {} \;
 find . -path './.git' -prune -o -path './node_modules' -prune -o -type f -exec chmod 644 {} \;
 
@@ -86,4 +93,4 @@ echo "" | sudo -S service php8.4-fpm reload
 cd /home/$USER/$DOMAIN
 echo "ℹ️ Horizon terminating..."
 php artisan horizon:terminate
-echo "🚀 Application deployed!"
+echo "🚀 SUCCESS! Application deployed!"
