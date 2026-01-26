@@ -38,4 +38,11 @@ php artisan optimize
 php artisan livewire:publish --assets
 
 
+# ============================
+# RELOAD PHP-FPM
+# ============================
+echo "ℹ️ Reloading PHP-FPM service..."
+echo "" | sudo -S service php8.4-fpm reload
+
+
 echo "🚀 SUCCESS! Admin Application deployed!"
