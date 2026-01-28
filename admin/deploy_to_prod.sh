@@ -37,6 +37,10 @@ echo "ℹ️ Running artisan commands..."
 php artisan optimize
 php artisan livewire:publish --assets
 
+# Gera arquivo com informações do último commit
+echo "ℹ️ Writing version info to public/version.txt..."
+git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad%nMensagem:%n%B" > public/version.txt
+
 
 # ============================
 # RELOAD PHP-FPM
