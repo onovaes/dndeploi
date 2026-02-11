@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# V2 - introduce service php8.4-fpm restart and news artisan commands to clear
+# V2 - Melhora limpeza de cache
 
 # ---------------------------------------------
 # This script will be run after deploy in prod (Without staging) has been run
