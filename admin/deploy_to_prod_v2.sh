@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# V2 - introduce service php8.4-fpm restart and news artisan commands to clear cache
+# V2 - introduce service php8.4-fpm restart and news artisan commands to clear
 
 # ---------------------------------------------
 # This script will be run after deploy in prod (Without staging) has been run
@@ -53,7 +53,7 @@ git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad%nMensagem:%n
 # ============================
 # RELOAD PHP-FPM
 # ============================
-echo "ℹ️ Restarting PHP-FPM service..."
-echo "" | sudo -S service php8.4-fpm restart
+echo "ℹ️ Reloading PHP-FPM service..."
+echo "" | sudo -S service php8.4-fpm reload
 
 echo "🚀 SUCCESS! Admin Application deployed!"
