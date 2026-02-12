@@ -51,9 +51,9 @@ git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad%nMensagem:%n
 
 
 # ============================
-# RESTART PHP-FPM
+# RELOAD PHP-FPM
 # ============================
-echo "ℹ️ Restarting PHP-FPM service..."
-echo "" | sudo -S service php8.4-fpm restart
+echo "ℹ️ Reloading PHP-FPM service..."
+echo "" | sudo -S service php8.4-fpm reload
 
 echo "🚀 SUCCESS! Admin Application deployed!"
