@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-# V2 - Melhora limpeza de cache
+# V2 - Melhora limpeza de cache, com optimize:clear e criacao de cache específicos.
 
 # ---------------------------------------------
-# This script will be run after deploy in prod (Without staging) has been run
+# This script will be run after deploy in prod (Without staging) 
+# has been run with dothnews-admin
 # ---------------------------------------------
 
 # ============================
