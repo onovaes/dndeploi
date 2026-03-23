@@ -31,6 +31,7 @@ rsync -a --delete /home/themes/$THEME_DIR/ /home/$USER/$DOMAIN/resources/$THEME_
 echo "🍀 Checked out branch: $CURRENT_BRANCH"
 cd /home/$USER/$DOMAIN
 git pull origin $CURRENT_BRANCH
+git fetch --tags
 echo "ℹ️ Installing dothnews-core composer dependencies ..."
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 

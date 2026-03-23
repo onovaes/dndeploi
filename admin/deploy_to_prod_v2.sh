@@ -21,7 +21,7 @@ CURRENT_BRANCH=$3
 cd /home/$USER/$DOMAIN
 echo "🍀 Checked out branch: $CURRENT_BRANCH"
 git pull origin $CURRENT_BRANCH
-
+git fetch --tags
 echo "ℹ️ Installing admin application composer dependencies ..."
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
