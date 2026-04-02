@@ -6,11 +6,47 @@ set -Eeuo pipefail
 # curl -sSL https://raw.githubusercontent.com/onovaes/dndeploi/main/admin/deploy_to_prod_v3.sh | bash -s "{SITE_DIRECTORY}" "{SITE_DOMAIN}" "{BRANCH}"
 
 # ============================
+# VALIDAÇÃO DE ARGUMENTOS
+# ============================
+if [[ $# -lt 3 ]]; then
+  echo "❌ Uso: $0 <site_directory> <domain> <branch>"
+  exit 1
+fi
+
+# ============================
 # VARIÁVEIS DE CONFIGURAÇÃO
 # ============================
 SITE_DIRECTORY=$1
 DOMAIN=$2
 CURRENT_BRANCH=$3
+
+# ============================
+# VALIDAÇÕES
+# ============================
+
+# SITE_DIRECTORY
+[[ -z "$SITE_DIRECTORY" ]] && { echo "❌ SITE_DIRECTORY não pode ser vazio."; exit 1; }
+[[ -d "$SITE_DIRECTORY" ]] || { echo "❌ Diretório não existe: $SITE_DIRECTORY"; exit 1; }
+[[ -d "$SITE_DIRECTORY/.git" ]] || { echo "❌ Não é um repositório git: $SITE_DIRECTORY"; exit 1; }
+[[ -w "$SITE_DIRECTORY" ]] || { echo "❌ Sem permissão de escrita em: $SITE_DIRECTORY"; exit 1; }
+
+# DOMAIN
+[[ -z "$DOMAIN" ]] && { echo "❌ DOMAIN não pode ser vazio."; exit 1; }
+if ! [[ "$DOMAIN" =~ ^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$ ]]; then
+  echo "❌ DOMAIN inválido: $DOMAIN"
+  exit 1
+fi
+
+# CURRENT_BRANCH
+[[ -z "$CURRENT_BRANCH" ]] && { echo "❌ CURRENT_BRANCH não pode ser vazio."; exit 1; }
+if ! git -C "$SITE_DIRECTORY" check-ref-format --branch "$CURRENT_BRANCH" &>/dev/null; then
+  echo "❌ Nome de branch inválido: $CURRENT_BRANCH"
+  exit 1
+fi
+if ! git -C "$SITE_DIRECTORY" ls-remote --exit-code --heads origin "$CURRENT_BRANCH" &>/dev/null; then
+  echo "❌ Branch não encontrada no remote: $CURRENT_BRANCH"
+  exit 1
+fi
 
 # ============================
 # INFOS PARA DEBUG
