@@ -100,3 +100,6 @@ echo "" | sudo -S service php8.4-fpm reload
 
 
 echo "🚀 SUCCESS! Admin Application deployed!"
+echo "📁 Site Directory: $SITE_DIRECTORY"
+echo "🌐 Domain: $DOMAIN"
+echo "🌿 Current Branch: $CURRENT_BRANCH"
