@@ -32,7 +32,7 @@ CURRENT_BRANCH=$3
 
 # DOMAIN
 [[ -z "$DOMAIN" ]] && { echo "❌ DOMAIN não pode ser vazio."; exit 1; }
-if ! [[ "$DOMAIN" =~ ^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$ ]]; then
+if ! [[ "$DOMAIN" =~ ^[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$ ]]; then
   echo "❌ DOMAIN inválido: $DOMAIN"
   exit 1
 fi
