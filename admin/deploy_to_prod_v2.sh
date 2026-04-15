@@ -48,8 +48,8 @@ php artisan livewire:publish --assets
 
 # Gera arquivo com informações do último commit
 echo "ℹ️ Writing version info to public/version.txt..."
-git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad%nMensagem:%n%B" > public/version.txt
-
+git log -1 --pretty="Branch: $CURRENT_BRANCH%nAutor: %an%nData: %ad" > public/version.txt
+echo "Tag: $(git describe --tags --abbrev=0)" >> public/version.txt
 
 # ============================
 # RELOAD PHP-FPM
